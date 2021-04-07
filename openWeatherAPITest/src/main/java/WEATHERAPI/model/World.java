@@ -9,17 +9,17 @@ import java.util.Comparator;
 import java.util.List;
 
 public class World {
-    private List<Country> countries = new ArrayList<>();
+    private List<City> countries = new ArrayList<>();
 
-    public List<Country> getCountries() {
+    public List<City> getCountries() {
         return countries;
     }
 
-    public void setCountries(List<Country> countries) {
+    public void setCountries(List<City> countries) {
         this.countries = countries;
     }
 
-    public void addCountry(Country country) {
+    public void addCountry(City country) {
         this.countries.add(country);
     }
 

@@ -27,7 +27,7 @@ public class WeatherStatServices implements WeatherStatServicesI {
     HttpConnectionServicesI httpConnectionService;
 
     @Override
-    public List<Country> getAllWeathers() throws UnirestException {
+    public List<City> getAllWeathers() throws UnirestException {
         World world = new World();
         JSONArray jsonArray = httpConnectionService.getAllWeathers().getJSONArray("weatherStats");
         List<Case> cases = getCases(new ArrayList<>(), jsonArray);
@@ -36,11 +36,11 @@ public class WeatherStatServices implements WeatherStatServicesI {
                 int temperature = 0;
                 temperature = aCase.getTemperature();
                 
-                world.addCountry(new Country(aCase.getCountry(), aCase.getHumidity(), aCase.getVisibility(), temperature, new Location(0, 0)));
+                world.addCountry(new City(aCase.getCountry(), aCase.getHumidity(), aCase.getVisibility(), temperature, new Location(0, 0)));
 
             } else {
-                Country country = new Country();
-                if (world.getCountries().stream().map(Country::getName).noneMatch(aCase.getCountry()::equals)) {
+                City country = new City();
+                if (world.getCountries().stream().map(City::getName).noneMatch(aCase.getCountry()::equals)) {
                     AtomicInteger humidity = new AtomicInteger(0);
                     AtomicInteger visibility = new AtomicInteger(0);
                     AtomicInteger temperature = new AtomicInteger(0);
@@ -70,8 +70,8 @@ public class WeatherStatServices implements WeatherStatServicesI {
     }
 
     @Override
-    public Country getWeatherByCountry(String country) throws UnirestException {
-        List<Country> countries = this.getAllWeathers().stream().filter(country1 -> country1.getName().equals(country)).collect(Collectors.toList());
+    public City getWeatherByCity(String country) throws UnirestException {
+        List<City> countries = this.getAllWeathers().stream().filter(country1 -> country1.getName().equals(country)).collect(Collectors.toList());
         System.out.println(country);
         countries.forEach(country1 -> {
             JSONArray coords = null;

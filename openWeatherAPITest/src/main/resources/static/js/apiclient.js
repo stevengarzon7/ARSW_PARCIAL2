@@ -7,7 +7,7 @@ apiclient = (function () {
             }, null)
         },
         getWeatherByCountry: function (country, callback) {
-            $.getJSON(url + "weather/?country=" + country, (data) => {
+            $.getJSON(url + "weather/?q=" + country, (data) => {
                 callback(data);
             }, null)
         },

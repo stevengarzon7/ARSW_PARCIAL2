@@ -9,13 +9,13 @@ package WEATHERAPI.services;
  *
  * @author imac
  */
-import WEATHERAPI.model.Country;
+import WEATHERAPI.model.City;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.*;
 
 public interface WeatherStatServicesI {
-    List<Country> getAllWeathers() throws UnirestException;
+    List<City> getAllWeathers() throws UnirestException;
 
-    Country getWeatherByCountry(String country) throws UnirestException;
+    City getWeatherByCity(String country) throws UnirestException;
 }

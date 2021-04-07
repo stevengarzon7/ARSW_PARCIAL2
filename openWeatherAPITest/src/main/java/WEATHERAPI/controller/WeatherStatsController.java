@@ -11,7 +11,7 @@ package WEATHERAPI.controller;
  */
 
 import WEATHERAPI.model.Case;
-import WEATHERAPI.model.Country;
+    import WEATHERAPI.model.City;
 import WEATHERAPI.services.WeatherStatServicesI;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -32,25 +32,25 @@ public class WeatherStatsController {
 
     @GetMapping()
     public ResponseEntity<?> getAllCases() {
-        List<Country> cases;
+        List<City> cases;
         try {
             cases = weatherStatServices.getAllWeathers();
         } catch (UnirestException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<List<Country>>(cases, HttpStatus.OK);
+        return new ResponseEntity<List<City>>(cases, HttpStatus.OK);
     }
 
     @GetMapping("stats")
     public ResponseEntity<?> getCasesByCountry(@RequestParam String country) {
-        Country cases = null;
+        City cases = null;
         try {
-            cases = weatherStatServices.getWeatherByCountry(country);
+            cases = weatherStatServices.getWeatherByCity(country);
         } catch (UnirestException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Country>(cases, HttpStatus.OK);
+        return new ResponseEntity<City>(cases, HttpStatus.OK);
     }
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Country implements Comparable<Country> {
+public class City implements Comparable<City> {
     private String name;
     private int humidity = 0;
     private int visibility = 0;
@@ -23,17 +23,18 @@ public class Country implements Comparable<Country> {
     private Location location = new Location(0, 0);
     private List<Province> provinces = new ArrayList<>();
 
-    public Country(String name, int num_deaths, int num_infected, int num_cured, Location location) {
+    public City(String name, int num_deaths, int num_infected, int num_cured, Location location) {
         this.name = name;
         this.humidity = num_deaths;
         this.visibility = num_infected;
         this.temperature = num_cured;
         this.location = location;
     }
-
-    public Country() {
+    public City(){
+        
     }
 
+  
     public Location getLocation() {
         return location;
     }
@@ -87,10 +88,12 @@ public class Country implements Comparable<Country> {
     }
 
     @Override
-    public int compareTo(Country o) {
-        int result = Comparator.comparing(Country::getTemperature).reversed()
-                .thenComparing(Country::getVisibility).reversed()
-                .thenComparing(Country::getHumidity).reversed().compare(this, o);
+    public int compareTo(City o) {
+        int result = Comparator.comparing(City::getTemperature).reversed()
+                .thenComparing(City::getVisibility).reversed()
+                .thenComparing(City::getHumidity).reversed().compare(this, o);
         return result;
     }
+
+   
 }

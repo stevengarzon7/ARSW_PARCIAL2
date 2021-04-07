@@ -16,9 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public interface HttpConnectionServicesI {
-    JSONObject getAllWeathers() throws UnirestException;
 
-    JSONObject getWeatherByCountry(String country) throws UnirestException;
 
-    JSONArray getLocationCountry(String country) throws UnirestException;
+    JSONObject getWeatherByCity(String city) throws UnirestException;
+
+    
 }

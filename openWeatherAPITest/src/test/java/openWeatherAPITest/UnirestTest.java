@@ -23,7 +23,7 @@ public class UnirestTest {
         cities.add("Berlin");
 
         for (String city : cities) {
-            String url = String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=00e6056a80771fabd8617694dc22cf23", city);
+            String url = String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=55f42aa7100c6f035056aae2b29c54ae", city);
             HttpResponse<JsonNode> response = Unirest
                     .get(url)
                     .asJson();
