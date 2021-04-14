@@ -23,7 +23,7 @@ public class WeatherStatsController {
      * The Weather services.
      */
     @Autowired
-    WeatherStatServicesI weatherServices;
+    WeatherStatServicesI weatherStatServices;
 
     /**
      * Gets all cases.
@@ -32,7 +32,7 @@ public class WeatherStatsController {
      * @return the all cases
      */
     @GetMapping()
-    public ResponseEntity<?> getCaseByCountry(@RequestParam String place) {
+    public ResponseEntity<?> getAllCases(@RequestParam String place) {
         City city = null;
         try {
             city = weatherStatServices.getStatsByCity(place);
