@@ -20,5 +20,9 @@ public interface HttpConnectionServicesI {
 
     JSONObject getWeatherByCity(String city) throws UnirestException;
 
+	JSONObject getAllWeathers() throws UnirestException;
+
+	JSONArray getLocationCountry(String place) throws UnirestException;
+
     
 }

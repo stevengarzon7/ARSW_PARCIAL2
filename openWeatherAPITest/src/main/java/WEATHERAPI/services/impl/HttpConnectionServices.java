@@ -22,7 +22,8 @@ import java.util.ArrayList;
 @Service
 public class HttpConnectionServices implements HttpConnectionServicesI {
 
-    @Override
+  
+	@Override
     public JSONObject getAllWeathers() throws UnirestException {
                  HttpResponse<String> respuesta = null;
        
@@ -38,7 +39,8 @@ public class HttpConnectionServices implements HttpConnectionServicesI {
             return new JSONObject(respuesta.getBody());
     }
 
-    @Override
+    
+	@Override
     public JSONArray getLocationCountry(String place) throws UnirestException {
         
         if (place.equals("US")) place = "USA";

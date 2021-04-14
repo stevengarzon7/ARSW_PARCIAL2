@@ -1,42 +1,17 @@
 let app = (() => {
     let client = apiclient;
-
-    var mapObjetos = (funciones) => {
-        listaFunciones = funciones.map(({name, humidity, visibility, temperature}) => ({
-                name: name,
-                humidity: humidity,
-                visibility: visibility,
-                temperature: temperature
-            })
-        )
-        $("#tabla > tbody").empty();
-        listaFunciones.forEach(({name, humidity, visibility, temperature}) => {
-            $("#tabla > tbody").append(
-                `<tr>
-            <td><a onclick="app.consultarPais('${name}')">${name}</a> </td>   
-            <td> ${humidity} </td>
-            <td> ${visibility} </td>
-            <td> ${temperature} </td>
-        </tr>`
-            );
-        });
-    }
     var mapPaises = (funciones) => {
-        listaPaises = funciones.provinces;
-        plotMarkers(funciones.location);
-        $("#tablaPais > tbody").empty();
-        // const p = listaFunciones.map(a => a.provinces.valueOf())
-        // console.log(p)
-        listaPaises.forEach((province) => {
-            $("#tablaPais > tbody").append(
-                `<tr>
-            <td> ${province.name} </td>   
-            <td> ${province.visibility} </td>
-            <td> ${province.humidity} </td>
-            <td> ${province.temperature} </td>
-        </tr>`
-            );
-        });
+        document.getElementById("cityN").innerText = funciones.name;
+        document.getElementById("weather").innerText = funciones.weather.main;
+        document.getElementById("wdes").innerText = funciones.weather.description;
+        document.getElementById("temp").innerText = funciones.main.temp;
+        document.getElementById("flike").innerText = funciones.main.feels_like;
+        document.getElementById("high").innerText = funciones.main.temp_max;
+        document.getElementById("low").innerText = funciones.main.temp_min;
+        document.getElementById("hum").innerText = funciones.main.humidity;
+        document.getElementById("wind").innerText = funciones.wind.speed;
+        document.getElementById("clouds").innerText = funciones.clouds.all;
+        plotMarkers(funciones.coord);
     }
     var initMap = () => {
         map = new google.maps.Map(document.getElementById("map"), {
@@ -50,7 +25,7 @@ let app = (() => {
         markers = [];
         bounds = new google.maps.LatLngBounds();
         console.log(m.latitude, m.longitude);
-        var position = new google.maps.LatLng(m.latitude, m.longitude);
+        var position = new google.maps.LatLng(m.lat, m.lon);
         console.log(position);
         markers.push(
             new google.maps.Marker({
@@ -66,14 +41,13 @@ let app = (() => {
 
     function init() {
         initMap();
-        client.getAllWeathers(mapObjetos);
     }
 
     return {
         init: init,
-        consultarPais(nombre) {
+        consultarCiudad(nombre) {
             console.log(nombre)
-            client.getWeatherByCountry(nombre, mapPaises);
+            client.getCasesByCity(nombre, mapPaises);
         }
     }
 })();
